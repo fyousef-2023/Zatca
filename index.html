@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دعم الفوترة الإلكترونية | نجاح العملاء</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', 'Tahoma', Arial, sans-serif;
+  background: #f4f0f4;
+  color: #222;
+  direction: rtl;
+  min-height: 100vh;
+}
+:root {
+  --purple: #653165;
+  --teal: #00A4A6;
+  --pur-l: #EFE5EF;
+  --teal-l: #D9F2F2;
+  --teal-d: #007e80;
+  --pur-d: #4e2550;
+  --amber: #BA7517;
+  --amber-l: #FAEEDA;
+  --green: #1e7d32;
+  --green-l: #E3F6E8;
+  --blue: #1d5fa8;
+  --blue-l: #E3EEFB;
+}
+.header {
+  background: var(--purple);
+  color: #fff;
+  padding: 22px 32px 16px;
+  border-bottom: 4px solid var(--teal);
+}
+.header h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.header p  { font-size: 12px; opacity: .75; }
+
+.nav-tabs {
+  background: #fff;
+  border-bottom: 2px solid var(--purple);
+  padding: 0 24px;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-tab {
+  padding: 14px 18px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #888;
+  cursor: pointer;
+  border: none;
+  background: none;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: all .15s;
+  font-family: inherit;
+}
+.nav-tab.active { color: var(--purple); border-bottom-color: var(--purple); }
+.nav-tab:hover:not(.active) { color: var(--purple); background: var(--pur-l); }
+
+.content { max-width: 860px; margin: 0 auto; padding: 24px 20px 60px; }
+.section { display: none; }
+.section.active { display: block; }
+
+.intro-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 0.5px solid #ddd;
+  padding: 18px 20px;
+  margin-bottom: 22px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: #333;
+}
+.intro-card b { color: var(--purple); }
+
+.section-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--purple);
+  margin: 30px 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 2px solid var(--pur-l);
+  padding-bottom: 10px;
+}
+.section-title:first-child { margin-top: 0; }
+
+.goal-line {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--teal-d);
+  line-height: 1.9;
+  margin: 10px 0 16px;
+}
+
+.bob-box {
+  background: var(--pur-l);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin: 16px 0 20px;
+  font-size: 13.5px;
+  line-height: 1.9;
+  color: #3d2140;
+  border-right: 4px solid var(--purple);
+}
+.bob-box b { color: var(--purple); }
+
+.warn-box {
+  background: var(--amber-l);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin: 16px 0 20px;
+  font-size: 13.5px;
+  line-height: 2.1;
+  color: #5c3d00;
+  border-right: 4px solid var(--amber);
+}
+.warn-box b { color: var(--amber); display: block; margin-bottom: 6px; }
+
+.reason-card {
+  background: #fff;
+  border: 0.5px solid #ddd;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+}
+.reason-main {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.reason-sub {
+  font-size: 12.5px;
+  color: #444;
+  line-height: 1.9;
+  padding-right: 14px;
+  border-right: 2px solid var(--teal-l);
+}
+
+.status-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+.status-badge.resolved { background: var(--teal-l);  color: var(--teal-d); }
+.status-badge.open     { background: var(--pur-l);   color: var(--purple); }
+.status-badge.pending  { background: var(--amber-l); color: #8a5a00; }
+
+.steps {
+  background: #fff;
+  border: 0.5px solid #ddd;
+  border-radius: 12px;
+  padding: 6px 16px;
+  margin-bottom: 16px;
+}
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 0.5px solid #eee;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #333;
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  background: var(--purple);
+  color: #fff;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+}
+.step-body { flex: 1; min-width: 0; }
+
+.fields {
+  margin-top: 8px;
+  border: 0.5px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.field {
+  display: grid;
+  grid-template-columns: minmax(130px, 34%) 1fr;
+  gap: 10px;
+  padding: 9px 12px;
+  border-bottom: 0.5px solid #eee;
+  font-size: 12.5px;
+  line-height: 1.8;
+}
+.field:last-child { border-bottom: none; }
+.field:nth-child(odd) { background: #faf7fa; }
+.field .k { font-weight: 700; color: var(--purple); }
+.field .v { color: #444; }
+
+code {
+  font-family: Consolas, monospace;
+  background: var(--teal-l);
+  color: var(--teal-d);
+  padding: 1px 6px;
+  border-radius: 4px;
+  direction: ltr;
+  display: inline-block;
+}
+
+.cmp-wrap { overflow-x: auto; margin-bottom: 16px; }
+.cmp {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 0.5px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 13px;
+}
+.cmp th {
+  background: var(--purple);
+  color: #fff;
+  font-weight: 700;
+  padding: 10px 12px;
+  text-align: right;
+}
+.cmp td {
+  padding: 10px 12px;
+  border-bottom: 0.5px solid #eee;
+  color: #333;
+  line-height: 1.7;
+}
+.cmp tr:last-child td { border-bottom: none; }
+.cmp tr.hl td { background: var(--teal-l); font-weight: 700; color: var(--teal-d); }
+
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border: 1.5px solid var(--teal);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+  text-decoration: none;
+  transition: background .15s;
+}
+.link-card:hover { background: var(--teal-l); }
+.link-card .emoji { font-size: 20px; flex-shrink: 0; }
+.link-card .txt { font-size: 13.5px; font-weight: 700; color: var(--pur-d); }
+.link-card .sub { font-size: 11.5px; color: #777; margin-top: 2px; }
+
+.footer { text-align: center; font-size: 11px; color: #999; padding: 20px; }
+
+@media (max-width: 560px) {
+  .header { padding: 18px 16px 14px; }
+  .nav-tabs { padding: 0 8px; }
+  .content { padding: 20px 16px 50px; }
+  .field { grid-template-columns: 1fr; gap: 2px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>دعم الفوترة الإلكترونية</h1>
+  <p>دعم هيئة الزكاة والضريبة والجمارك بقيمة 2,500 ريال — الشروط والمستندات وخطوات التقديم</p>
+</div>
+
+<div class="nav-tabs">
+  <button class="nav-tab active" onclick="showTab('overview', this)">نظرة عامة</button>
+  <button class="nav-tab" onclick="showTab('web', this)">التقديم من الموقع</button>
+  <button class="nav-tab" onclick="showTab('app', this)">التقديم من التطبيق</button>
+</div>
+
+<div class="content">
+
+  <!-- ════════════ TAB 1: نظرة عامة ════════════ -->
+  <div id="overview" class="section active">
+
+    <div class="intro-card">
+      دعم الفوترة الإلكترونية هو دعم من <b>هيئة الزكاة والضريبة والجمارك</b> بقيمة <b>2,500 ريال</b> لتغطية جزء من تكلفة الاشتراك في منصة فوترة إلكترونية معتمدة من الهيئة مثل رِواء. عند اشتراك العميل مع مزوّد خدمة وإصداره فواتير إلكترونية مرتبطة بالهيئة، يُضاف له <b>رصيد لدى الهيئة</b> يستخدمه في معاملاته معها.
+    </div>
+
+    <div class="bob-box">
+      الدعم <b>ليس مبلغًا نقديًا</b> يُصرف للعميل، وإنما <b>رصيد دائن</b> بقيمة 2,500 ريال لدى الهيئة، ويُمنح <b>مرة واحدة فقط</b> للمنشأة.
+    </div>
+
+    <div class="section-title">✅ شروط الاستحقاق</div>
+    <div class="steps">
+      <div class="step"><span class="step-num">1</span><div class="step-body">منشأة صغيرة أو متوسطة خاضعة للائحة الفوترة الإلكترونية.</div></div>
+      <div class="step"><span class="step-num">2</span><div class="step-body">إيرادات سنوية لا تتجاوز <b>3 ملايين ريال</b>.</div></div>
+      <div class="step"><span class="step-num">3</span><div class="step-body">سجل تجاري ساري المفعول.</div></div>
+      <div class="step"><span class="step-num">4</span><div class="step-body">المنشأة داخل المملكة العربية السعودية.</div></div>
+      <div class="step"><span class="step-num">5</span><div class="step-body">لم تستفد المنشأة من الدعم سابقًا.</div></div>
+      <div class="step"><span class="step-num">6</span><div class="step-body">المنشأة ومالكها سعوديا الجنسية.</div></div>
+    </div>
+
+    <div class="section-title">📎 المستندات المطلوبة</div>
+    <div class="goal-line">تطلب الهيئة من العميل وثيقتين لتقديم طلب الدعم:</div>
+    <div class="reason-card">
+      <div class="reason-main">١ — فاتورة الاشتراك في رِواء</div>
+      <div class="reason-sub">فاتورة شراء الاشتراك من رِواء بصفتها مزوّد خدمة الفوترة الإلكترونية، ويبدأ رقمها بحرفي <code>RW</code>.<br>
+        لمعرفة كيفية استخراج فاتورة الاشتراك وتوجيه العميل بخطوات صحيحة، اطّلع على الدليل:</div>
+      <a class="link-card" style="margin:10px 0 0" href="https://fyousef-2023.github.io/Invoice/" target="_blank" rel="noopener">
+        <span class="emoji">🧾</span>
+        <div>
+          <div class="txt">دليل فواتير الاشتراك — Subscription Invoices</div>
+          <div class="sub">خطوات استخراج فاتورة الاشتراك للعميل</div>
+        </div>
+      </a>
+    </div>
+    <div class="reason-card">
+      <div class="reason-main">٢ — عينة فاتورة إلكترونية</div>
+      <div class="reason-sub">أي فاتورة بيع صادرة من نظام رِواء تحتوي على معلومات المنشأة.</div>
+    </div>
+
+    <div class="section-title">🔀 طرق التقديم</div>
+    <div class="steps">
+      <div class="step"><span class="step-num">1</span><div class="step-body">من <b>موقع الهيئة</b> — خدمات ضريبة القيمة المضافة.</div></div>
+      <div class="step"><span class="step-num">2</span><div class="step-body">من <b>تطبيق الهيئة</b>.</div></div>
+    </div>
+    <div class="goal-line">بعد التقديم يصل العميل بريد إلكتروني من الهيئة، ويُتابَع معه بناءً على نتيجة البريد (قبول أو وجود ملاحظات).</div>
+
+
+    <div class="section-title">🔗 روابط مرجعية</div>
+    <a class="link-card" href="https://help.rewaa.com/ar-SA/12584779-%D9%83%D9%8A%D9%81-%D8%AA%D8%AD%D8%B5%D9%84-%D8%B9%D9%84%D9%89-%D8%AF%D8%B9%D9%85-%D8%A7%D9%84%D9%81%D9%88%D8%AA%D8%B1%D8%A9-%D8%A7%D9%84%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A9" target="_blank" rel="noopener">
+      <span class="emoji">📘</span>
+      <div>
+        <div class="txt">كيف تحصل على دعم الفوترة الإلكترونية</div>
+        <div class="sub">مقال مركز المساعدة — رِواء</div>
+      </div>
+    </a>
+    <a class="link-card" href="https://zatca.gov.sa/ar/E-Invoicing/Pages/default.aspx" target="_blank" rel="noopener">
+      <span class="emoji">🧾</span>
+      <div>
+        <div class="txt">بوابة الفوترة الإلكترونية</div>
+        <div class="sub">هيئة الزكاة والضريبة والجمارك</div>
+      </div>
+    </a>
+    <a class="link-card" href="https://zatca.gov.sa" target="_blank" rel="noopener">
+      <span class="emoji">🏛️</span>
+      <div>
+        <div class="txt">موقع هيئة الزكاة والضريبة والجمارك</div>
+        <div class="sub">لتسجيل الدخول وتقديم الطلب</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- ════════════ TAB 2: التقديم من الموقع ════════════ -->
+  <div id="web" class="section">
+
+    <div class="section-title">🌐 دعم الفوترة من موقع الهيئة</div>
+    <div class="steps">
+      <div class="step"><span class="step-num">1</span><div class="step-body">سجّل الدخول إلى <b>موقع هيئة الزكاة والضريبة والجمارك</b>.</div></div>
+      <div class="step"><span class="step-num">2</span><div class="step-body">اضغط على خيار <b>خدمات ضريبة القيمة المضافة</b>.</div></div>
+      <div class="step"><span class="step-num">3</span><div class="step-body">اختر خدمة <b>طلب دعم الفوترة الإلكترونية</b>.</div></div>
+      <div class="step"><span class="step-num">4</span><div class="step-body">أضف البيانات المطلوبة:
+        <div class="fields">
+          <div class="field"><span class="k">الرقم المرجعي للفاتورة</span><span class="v">رقم فاتورة الشراء من رِواء، يبدأ بحرفي RW مثال <code>RW12345</code></span></div>
+          <div class="field"><span class="k">مبلغ الشراء</span><span class="v">المبلغ بدون الضريبة</span></div>
+          <div class="field"><span class="k">تاريخ الشراء</span><span class="v">التاريخ المسجّل بفاتورة الشراء</span></div>
+          <div class="field"><span class="k">مقدم الخدمة</span><span class="v">شركة رواء التقنية لتقنية المعلومات</span></div>
+          <div class="field"><span class="k">المرفقات</span><span class="v">فاتورة الشراء من رِواء</span></div>
+          <div class="field"><span class="k">عينة الفوترة الإلكترونية</span><span class="v">فاتورة مصدّرة من رِواء، تحتوي على معلومات المنشأة</span></div>
+        </div>
+      </div></div>
+      <div class="step"><span class="step-num">5</span><div class="step-body">اضغط على <b>إرسال</b>.</div></div>
+    </div>
+
+    <div class="warn-box">
+      <b>ℹ️ مدة معالجة الطلب</b>
+      تستغرق معالجة الطلب من يومين إلى ثلاثة أيام عمل، وقد تصل إلى 10 أيام عمل.
+    </div>
+
+    <a class="link-card" href="https://zatca.gov.sa" target="_blank" rel="noopener">
+      <span class="emoji">🏛️</span>
+      <div>
+        <div class="txt">موقع هيئة الزكاة والضريبة والجمارك</div>
+        <div class="sub">تسجيل الدخول وتقديم طلب دعم الفوترة الإلكترونية</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- ════════════ TAB 3: التقديم من التطبيق ════════════ -->
+  <div id="app" class="section">
+
+    <div class="section-title">📱 دعم الفوترة من تطبيق الهيئة</div>
+    <div class="intro-card">
+      يمكن رفع طلب دعم الفوترة الإلكترونية من <b>تطبيق الهيئة</b>.
+    </div>
+
+    <div class="section-title">📝 خطوات طلب دعم الفوترة الإلكترونية</div>
+    <div class="steps">
+      <div class="step"><span class="step-num">1</span><div class="step-body">افتح <b>تطبيق الهيئة</b> وسجّل الدخول.</div></div>
+      <div class="step"><span class="step-num">2</span><div class="step-body">انتقل إلى خدمة <b>دعم الفوترة الإلكترونية</b>.</div></div>
+      <div class="step"><span class="step-num">3</span><div class="step-body">أرفق المستندين المطلوبين: <b>فاتورة الاشتراك في رِواء</b> و<b>فاتورة بيع صادرة من رِواء</b>.</div></div>
+      <div class="step"><span class="step-num">4</span><div class="step-body">أرسل الطلب، وتابع البريد الإلكتروني الوارد من الهيئة.</div></div>
+    </div>
+
+    <div class="bob-box">
+      البيانات المطلوبة هي نفسها الموضحة في تبويب <b>التقديم من الموقع</b>.
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  إعداد: قسم الجودة — فريق نجاح العملاء | رِواء
+</div>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
